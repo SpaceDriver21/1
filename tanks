@@ -1,0 +1,40 @@
+using System;
+
+class Program
+{
+    static int playerPosition = 5;
+    static int enemyPosition = 10;
+
+    static void Main(string[] args)
+    {
+        while (true)
+        {
+            Draw();
+            string command = Console.ReadLine();
+            ProcessCommand(command);
+            if (playerPosition == enemyPosition)
+            {
+                Console.WriteLine("You hit the enemy!");
+                break;
+            }
+        }
+    }
+
+    static void Draw()
+    {
+        for (int i = 0; i < 15; i++)
+        {
+            if (i == playerPosition) Console.Write('T');
+            else if (i == enemyPosition) Console.Write('E');
+            else Console.Write('_');
+        }
+        Console.WriteLine();
+    }
+
+    static void ProcessCommand(string command)
+    {
+        if (command == "left" && playerPosition > 0) playerPosition--;
+        else if (command == "right" && playerPosition < 14) playerPosition++;
+        else if (command == "fire") playerPosition = enemyPosition;
+    }
+}
